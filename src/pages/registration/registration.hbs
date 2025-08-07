@@ -1,0 +1,70 @@
+<main>
+  <div class="form-block">
+    {{#> FormAuth name="registration"}}
+      <div class="form__content">
+        <h2 class="form__title">Регистрация</h2>
+
+        {{> InputField
+          name="email"
+          id="email"
+          type="email"
+          placeholder="exampla@email.ru"
+          label="Почта"
+        }}
+
+        {{> InputField
+          name="login"
+          id="login"
+          type="text"
+          placeholder="login"
+          label="Логин"
+        }}
+
+        {{> InputField
+          name="first_name"
+          id="first_name"
+          type="text"
+          placeholder="Иван"
+          label="Имя"
+        }}
+
+        {{> InputField
+          name="second_name"
+          id="second_name"
+          type="text"
+          placeholder="Иванов"
+          label="Фамилия"
+        }}
+
+        {{> InputField
+          name="phone"
+          id="phone"
+          type="phone"
+          placeholder="+79999999999"
+          label="Телефон"
+        }}
+
+        {{> InputField
+          name="password"
+          id="password" 
+          type="password"
+          placeholder="Пароль"
+          label="Пароль"
+        }}
+
+        {{> InputField
+          name="password_repeat"
+          id="password_repeat" 
+          type="password_repeat"
+          placeholder="Пароль"
+          label="Пароль (ещё раз)"
+        }}
+      </div>
+
+      <div class="form__btns">
+        {{> Button label="Зарегистрироваться" type="submit" }}
+        {{> Link class="link" text="Войти"}}
+      </div>
+    {{/FormAuth}}
+  </div>
+</main>

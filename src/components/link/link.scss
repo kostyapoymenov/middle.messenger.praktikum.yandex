@@ -1,0 +1,26 @@
+@use "@/styles/_variables" as *;
+
+.link {
+  display: flex;
+  align-items: center;
+  color: $blue;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+
+  &:hover,
+  &:focus {
+    color: $darkBlue;
+    outline: none;
+  }
+
+  &--red {
+    color: $red;
+
+    &:hover,
+    &:focus {
+      color: $darkRed;
+      outline: none;
+    }
+  }
+}

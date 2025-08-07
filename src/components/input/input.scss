@@ -1,0 +1,25 @@
+@use "@/styles/_variables" as *;
+
+.input {
+  width: 100%;
+  height: 27px;
+  padding: 4px 0;
+  font-size: 14px;
+  color: $black;
+  border: none;
+  border-bottom: 2px solid $blue;
+  outline: none;
+  background-color: transparent;
+
+  &--gray {
+    border-bottom: none;
+    outline: inherit;
+    background-color: $grayLight;
+    border-radius: 5px;
+    padding: 4px 10px;
+  }
+
+  & .error {
+    border-bottom: 2px solid $red;
+  }
+}

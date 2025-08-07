@@ -1,0 +1,25 @@
+@use "@/styles/_variables" as *;
+
+.search {
+  position: relative;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $grayLight;
+  }
+
+  &__svg {
+    height: 16px;
+    width: 16px;
+  }
+
+  &__text {
+    font-size: 12px;
+    color: $gray;
+  }
+}

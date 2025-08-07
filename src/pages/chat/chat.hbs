@@ -1,0 +1,19 @@
+<div class="chat">
+  <aside class="chat-sidebar">
+    <div class="chat-sidebar__link">
+      {{> Link class="link" text="Профиль" icon=true fontSize="12px" href="/profile"}}
+    </div>
+    <div class="chat-sidebar__search">
+       {{> Search }}
+    </div>
+    <div class="chat-sidebar__chats">
+        {{> ChatItem }}
+        {{> ChatItem }}
+        {{> ChatItem }}
+        {{> ChatItem }}
+    </div>
+  </aside>  
+
+  <div class="chat-content">
+    <div class="chat-content__empty">Выберите чат, чтобы отправить сообщение</div>
+</div>

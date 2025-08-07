@@ -1,0 +1,22 @@
+@use "@/styles/_variables" as *;
+
+.input {
+  &-field {
+    margin-bottom: 16px;
+  }
+
+  &__label {
+    color: $gray;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  &__error {
+    color: $red;
+    font-size: 10px;
+    font-weight: 500;
+    text-align: left;
+    margin-top: 2px;
+  }
+}

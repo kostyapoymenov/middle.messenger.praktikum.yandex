@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+
+# Vite build output
+dist/
+
+# Локальные файлы
+.vscode/
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Кэш и временные файлы
+.cache/
+*.tmp
+
+# Файлы окружения
+.env
+.env.local
+.env.*.local
