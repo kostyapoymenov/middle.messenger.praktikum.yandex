@@ -30,8 +30,8 @@ export type TPage =
   | "profile"
   | "404"
   | "500"
-  | "createQuestionnaire"
-  | "answerQuestionnaire";
+  | "changeProfile"
+  | "changePassword";
 
 interface AppState {
   currentPage: TPage;
@@ -76,28 +76,22 @@ export default class App {
       case "500":
         renderTemplate(this.appElement, Pages.Page500);
         break;
+      case "changeProfile":
+        renderTemplate(this.appElement, Pages.ChangeProfile);
+        break;
+      case "changePassword":
+        renderTemplate(this.appElement, Pages.ChangePassword);
+        break;
       default:
         renderTemplate(this.appElement, Pages.Chat);
         break;
     }
 
     renderTemplate(this.footerElement, Footer, { footerLinks: linkPages });
-
     this.attachEventListeners();
   }
 
   attachEventListeners(): void {
-    if (this.state.currentPage === "createQuestionnaire") {
-      const addButton = document.getElementById("add-question");
-      const createButton = document.getElementById("create-questionnaire");
-
-      addButton?.addEventListener("click", () => this.addQuestion());
-      createButton?.addEventListener("click", () => this.createQuestionnaire());
-    } else if (this.state.currentPage === "answerQuestionnaire") {
-      const submitButton = document.getElementById("submit-answers");
-      submitButton?.addEventListener("click", () => this.submitAnswers());
-    }
-
     const footerLinks = document.querySelectorAll<HTMLAnchorElement>(".footer-link");
     footerLinks.forEach((link) => {
       link.addEventListener("click", (e: Event) => {
@@ -114,25 +108,5 @@ export default class App {
   changePage(page: TPage): void {
     this.state.currentPage = page;
     this.render();
-  }
-
-  addQuestion(): void {
-    const questionInput = document.getElementById("question-input") as HTMLInputElement | null;
-    if (questionInput && questionInput.value.trim()) {
-      this.state.questions.push(questionInput.value);
-      questionInput.value = "";
-      this.render();
-    }
-  }
-
-  createQuestionnaire(): void {
-    if (this.state.questions.length > 0) {
-      this.state.currentPage = "answerQuestionnaire";
-      this.render();
-    }
-  }
-
-  submitAnswers(): void {
-    alert("Answers submitted!");
   }
 }

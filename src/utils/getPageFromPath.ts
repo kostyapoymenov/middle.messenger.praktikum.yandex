@@ -12,10 +12,10 @@ export const getPageFromPath = (path: string): TPage => {
       return "profile";
     case "/500":
       return "500";
-    case "/createQuestionnaire":
-      return "createQuestionnaire";
-    case "/answerQuestionnaire":
-      return "answerQuestionnaire";
+    case "/changeProfile":
+      return "changeProfile";
+    case "/changePassword":
+      return "changePassword";
     default:
       return "404";
   }

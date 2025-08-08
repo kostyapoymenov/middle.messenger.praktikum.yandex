@@ -3,6 +3,8 @@ export const linkPages: { href: string; text: string; name: string }[] = [
   { href: "/registration", text: "Регистрация", name: "registration" },
   { href: "/chat", text: "Чат", name: "chat" },
   { href: "/profile", text: "Профиль", name: "profile" },
+  { href: "/changeProfile", text: "Изменить профиль", name: "changeProfile" },
+  { href: "/changePassword", text: "Изменить пароль", name: "changePassword" },
   { href: "/404", text: "404", name: "404" },
   { href: "/500", text: "500", name: "500" },
 ];

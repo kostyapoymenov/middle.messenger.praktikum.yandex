@@ -1,0 +1,54 @@
+<main class="main">
+  <div class="form-block">
+    {{#> FormAuth name="registration"}}
+      <div class="form__content">
+        <h2 class="form__title">Изменить профиль</h2>
+
+        {{> InputField
+          name="email"
+          id="email"
+          type="email"
+          placeholder="exampla@email.ru"
+          label="Почта"
+        }}
+
+        {{> InputField
+          name="login"
+          id="login"
+          type="text"
+          placeholder="login"
+          label="Логин"
+        }}
+
+        {{> InputField
+          name="first_name"
+          id="first_name"
+          type="text"
+          placeholder="Иван"
+          label="Имя"
+        }}
+
+        {{> InputField
+          name="second_name"
+          id="second_name"
+          type="text"
+          placeholder="Иванов"
+          label="Фамилия"
+        }}
+
+        {{> InputField
+          name="phone"
+          id="phone"
+          type="phone"
+          placeholder="+79999999999"
+          label="Телефон"
+        }}
+      </div>
+
+      <div class="form__btns">
+        {{> Button label="Сохранить" type="submit" }}
+        {{> Link class="link" text="Назад"}}
+      </div>
+    {{/FormAuth}}
+  </div>
+</main>
