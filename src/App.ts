@@ -9,6 +9,11 @@ import { Form } from "./partials/form/form";
 import { getPageFromPath } from "./utils/getPageFromPath";
 import { Search } from "./components/search/search";
 import { ChatItem } from "./components/chatItem/chatItem";
+import { Footer } from "./components/footer/footer";
+
+import { renderTemplate } from "./utils/renderTemplate";
+
+import { linkPages } from "./components/footer/const";
 
 Handlebars.registerPartial("Link", Link);
 Handlebars.registerPartial("Button", Button);
@@ -37,6 +42,7 @@ interface AppState {
 export default class App {
   state: AppState;
   appElement: HTMLElement | null;
+  footerElement: HTMLElement | null;
 
   constructor() {
     this.state = {
@@ -45,43 +51,38 @@ export default class App {
       answers: [],
     };
     this.appElement = document.getElementById("app");
+    this.footerElement = document.getElementById("footer");
   }
 
   render(): void {
-    if (!this.appElement) return;
-
-    let template: Handlebars.TemplateDelegate;
+    if (!this.appElement || !this.footerElement) return;
 
     switch (this.state.currentPage) {
       case "chat":
-        template = Handlebars.compile(Pages.Chat as string);
-        this.appElement.innerHTML = template({});
+        renderTemplate(this.appElement, Pages.Chat);
         break;
       case "login":
-        template = Handlebars.compile(Pages.Login as string);
-        this.appElement.innerHTML = template({});
+        renderTemplate(this.appElement, Pages.Login);
         break;
       case "registration":
-        template = Handlebars.compile(Pages.Registration as string);
-        this.appElement.innerHTML = template({});
+        renderTemplate(this.appElement, Pages.Registration);
         break;
       case "profile":
-        template = Handlebars.compile(Pages.Profile as string);
-        this.appElement.innerHTML = template({});
+        renderTemplate(this.appElement, Pages.Profile);
         break;
       case "404":
-        template = Handlebars.compile(Pages.Page404 as string);
-        this.appElement.innerHTML = template({});
+        renderTemplate(this.appElement, Pages.Page404);
         break;
       case "500":
-        template = Handlebars.compile(Pages.Page500 as string);
-        this.appElement.innerHTML = template({});
+        renderTemplate(this.appElement, Pages.Page500);
         break;
       default:
-        template = Handlebars.compile(Pages.Chat as string);
-        this.appElement.innerHTML = template({});
+        renderTemplate(this.appElement, Pages.Chat);
         break;
     }
+
+    renderTemplate(this.footerElement, Footer, { footerLinks: linkPages });
+
     this.attachEventListeners();
   }
 

@@ -18,4 +18,6 @@
 4. Соберите стабильную версию проекта:
    `npm run build`
 
-### Ссылки на страницы проекта
+### Ссылки
+
+Сслыка на netlify [https://messenger-kp.netlify.app/](https://messenger-kp.netlify.app/)

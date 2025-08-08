@@ -1,0 +1,19 @@
+@use "@/styles/_variables" as *;
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $white;
+}
+
+.footer {
+  &-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+}
