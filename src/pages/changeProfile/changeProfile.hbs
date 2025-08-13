@@ -1,54 +1,62 @@
 <main class="main">
   <div class="form-block">
-    {{#> FormAuth name="registration"}}
-      <div class="form__content">
-        <h2 class="form__title">Изменить профиль</h2>
+    <h2 class="form__title">Изменить профиль</h2>
+    {{#> Form name="registration"}}
 
-        {{> InputField
-          name="email"
-          id="email"
-          type="email"
-          placeholder="exampla@email.ru"
-          label="Почта"
-        }}
+      {{> InputField
+        name="first_name"
+        id="first_name"
+        type="text"
+        placeholder="Иван"
+        label="Имя"
+      }}
 
-        {{> InputField
-          name="login"
-          id="login"
-          type="text"
-          placeholder="login"
-          label="Логин"
-        }}
+      {{> InputField
+        name="second_name"
+        id="second_name"
+        type="text"
+        placeholder="Иванов"
+        label="Фамилия"
+      }}
 
-        {{> InputField
-          name="first_name"
-          id="first_name"
-          type="text"
-          placeholder="Иван"
-          label="Имя"
-        }}
+      {{> InputField
+        name="display_name"
+        id="display_name"
+        type="text"
+        placeholder="display_name"
+        label="Имя в чате"
+      }}
 
-        {{> InputField
-          name="second_name"
-          id="second_name"
-          type="text"
-          placeholder="Иванов"
-          label="Фамилия"
-        }}
+      {{> InputField
+        name="login"
+        id="login"
+        type="text"
+        placeholder="login"
+        label="Логин"
+      }}
 
-        {{> InputField
-          name="phone"
-          id="phone"
-          type="phone"
-          placeholder="+79999999999"
-          label="Телефон"
-        }}
-      </div>
+      {{> InputField
+        name="email"
+        id="email"
+        type="email"
+        placeholder="exampla@email.ru"
+        label="Почта"
+      }}
 
-      <div class="form__btns">
-        {{> Button label="Сохранить" type="submit" }}
-        {{> Link class="link" text="Назад"}}
-      </div>
-    {{/FormAuth}}
+      {{> InputField
+        name="phone"
+        id="phone"
+        type="phone"
+        placeholder="+79999999999"
+        label="Телефон"
+      }}
+
+      {{> Spacer height=30}}
+      {{> Button label="Сохранить" type="submit" }}
+
+      {{> Spacer height=16}}
+      {{> Link class="link--center" text="Назад"}}
+        
+    {{/Form}}
   </div>
 </main>

@@ -1,18 +1,16 @@
-<div class="input-field {{#if name}} input__field_{{name}}{{/if}} {{#if error}} input__field--error{{/if}}">
-    <label class="input__container">
-        {{#if label}}
-            <div class="input__label">{{label}}</div>
-        {{/if}}
+<label class="input-field {{#if name}} input__field_{{name}}{{/if}} {{#if error}} input__field--error{{/if}}">
+    {{#if label}}
+        <span class="input__label">{{label}}</span>
+    {{/if}}
 
-        {{> Input
-            type=type
-            name=name
-            id=id
-            placeholder=placeholder
-        }}
+    {{> Input
+        type=type
+        name=name
+        id=id
+        placeholder=placeholder
+    }}
 
-        {{#if error}}
-            <div class="input__error">{{error}}</div>
-        {{/if}}
-    </label>
-</div>
+    {{#if error}}
+        <span class="input__error">{{error}}</span>
+    {{/if}}
+</label>

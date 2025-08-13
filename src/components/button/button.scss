@@ -1,10 +1,12 @@
+@use "@/styles/_variables" as *;
+
 .btn {
   display: inline-block;
   width: 100%;
   min-width: 280px;
   padding: 12px;
 
-  color: #ffffff;
+  color: $white;
   text-decoration: none;
   font-weight: 500;
   background: #3369f3;

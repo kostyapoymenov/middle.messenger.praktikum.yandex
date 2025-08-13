@@ -1,9 +1,7 @@
 <main class="main">
   <div class="form-block">
-    {{#> FormAuth name="login"}}
-      <div class="form__content">
-        <h2 class="form__title">Вход</h2>
-
+    <h2 class="form__title">Вход</h2>
+      {{#> Form name="login"}}
         {{> InputField
           name="login"
           id="login"
@@ -19,12 +17,12 @@
           placeholder="Пароль"
           label="Пароль"
         }}
-      </div>
 
-      <div class="form__btns">
+        {{> Spacer height=30}}
         {{> Button label="Авторизоваться" type="submit" }}
-        {{> Link class="link" text="Нет аккаунта?"}}
-      </div>
-    {{/FormAuth}}
+
+        {{> Spacer height=16}}
+        {{> Link class="link--center" text="Нет аккаунта?"}}
+      {{/Form}}
   </div>
 </main>

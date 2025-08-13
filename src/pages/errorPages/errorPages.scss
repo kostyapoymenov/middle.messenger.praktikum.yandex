@@ -1,3 +1,5 @@
+@use "@/styles/_variables" as *;
+
 .page-error {
   display: flex;
   flex-direction: column;
@@ -11,7 +13,7 @@
 .error-num {
   font-size: 8rem;
   font-weight: 900;
-  color: #000000;
+  color: $darkGray;
   margin: 0;
   line-height: 1;
 }
@@ -19,7 +21,7 @@
 .error-title {
   font-size: 2rem;
   margin: 0.5rem 0 2rem;
-  color: #000000;
+  color: $darkGray;
   font-weight: 600;
 }
 

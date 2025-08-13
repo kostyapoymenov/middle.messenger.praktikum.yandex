@@ -10,6 +10,7 @@ import { getPageFromPath } from "./utils/getPageFromPath";
 import { Search } from "./components/search/search";
 import { ChatItem } from "./components/chatItem/chatItem";
 import { Footer } from "./components/footer/footer";
+import { Spacer } from "./components/spacer/spacer";
 
 import { renderTemplate } from "./utils/renderTemplate";
 
@@ -22,6 +23,7 @@ Handlebars.registerPartial("InputField", InputField);
 Handlebars.registerPartial("Form", Form);
 Handlebars.registerPartial("Search", Search);
 Handlebars.registerPartial("ChatItem", ChatItem);
+Handlebars.registerPartial("Spacer", Spacer);
 
 export type TPage =
   | "login"
