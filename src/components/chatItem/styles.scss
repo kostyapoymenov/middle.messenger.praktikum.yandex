@@ -1,19 +1,19 @@
 @use "@/styles/variables";
 
 .chat-item {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
+  border-bottom: 1px solid variables.$gray-light;
+  display: flex;
   gap: 10px;
-  transition: color 0.3s ease;
+  justify-content: space-between;
   max-height: 71px;
-  padding: 12px 0;
   overflow: hidden;
-  border-bottom: 1px solid variables.$grayLight;
+  padding: 12px 0;
+  transition: color 0.3s ease;
 
   &__body {
-    display: flex;
     align-items: center;
+    display: flex;
   }
 
   &__name {
@@ -41,20 +41,20 @@
   }
 
   &__count {
-    display: flex;
-    justify-content: center;
     color: variables.$white;
+    display: flex;
     font-size: 11px;
     font-weight: 500;
+    justify-content: center;
 
     &-circle {
-      display: flex;
       align-items: center;
+      background-color: variables.$blue;
+      border-radius: 50%;
+      display: flex;
+      height: 18px;
       justify-content: center;
       width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background-color: variables.$blue;
     }
   }
 }

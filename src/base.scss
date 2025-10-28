@@ -5,16 +5,16 @@ body {
   background-color: variables.$white;
   display: flex;
   flex-direction: column;
-  font-family: "Inter", sans-serif;
+  font-family: Inter, sans-serif;
   margin: initial;
   min-height: 100vh;
   padding: initial;
 
   #app {
-    width: 100%;
     display: flex;
     flex: 1;
     flex-direction: column;
     padding-bottom: 65px;
+    width: 100%;
   }
 }

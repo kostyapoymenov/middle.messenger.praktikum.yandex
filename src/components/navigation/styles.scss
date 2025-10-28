@@ -1,15 +1,14 @@
 @use "@/styles/variables";
 
 .nav {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: variables.$grayFaint;
-
-  display: flex;
   align-items: center;
-  justify-content: center;
+  background-color: variables.$gray-faint;
+  bottom: 0;
+  display: flex;
   gap: 30px;
+  justify-content: center;
+  left: 0;
   padding: 20px;
+  position: absolute;
+  width: 100%;
 }

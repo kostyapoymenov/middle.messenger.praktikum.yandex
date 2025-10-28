@@ -8,17 +8,17 @@
 
   &__label {
     color: variables.$gray;
+    color: variables.$dark-blue;
     font-size: 12px;
     font-weight: 500;
     text-align: left;
-    color: variables.$darkBlue;
   }
 
   &__error {
     color: variables.$red;
     font-size: 10px;
     font-weight: 500;
-    text-align: left;
     margin-top: 2px;
+    text-align: left;
   }
 }

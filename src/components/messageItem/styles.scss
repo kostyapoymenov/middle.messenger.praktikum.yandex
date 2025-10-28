@@ -20,13 +20,13 @@
 
   &.left {
     align-self: flex-start;
-    background-color: variables.$grayLight;
+    background-color: variables.$gray-light;
     border-top-left-radius: 0;
   }
 
   &.right {
     align-self: flex-end;
-    background-color: variables.$lightBlue;
+    background-color: variables.$light-blue;
     border-top-right-radius: 0;
     margin-left: auto;
   }

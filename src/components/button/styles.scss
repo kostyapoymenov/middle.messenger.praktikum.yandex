@@ -1,11 +1,11 @@
 @use "@/styles/variables";
 
 .btn {
-  color: variables.$white;
-  text-decoration: none;
-  font-weight: 500;
   background: #3369f3;
   border-radius: 8px;
+  color: variables.$white;
+  font-weight: 500;
+  text-decoration: none;
   transition: all 0.3s ease;
 
   &:hover,
@@ -24,9 +24,9 @@
   position: relative;
 
   & > svg {
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
   }
 
