@@ -10,7 +10,7 @@
     "dev": "vite",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
-    "start": "npm run prebuild && node server.cjs",
+    "start": "node server.cjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
