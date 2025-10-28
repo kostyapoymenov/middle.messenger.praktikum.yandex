@@ -6,17 +6,29 @@
 
 ### Установка проекта
 
-1. Клонирование репозитория:
-   `git clone https://github.com/kostyapoymenov/middle.messenger.praktikum.yandex.git`
+Клонирование репозитория:
+`git clone https://github.com/kostyapoymenov/middle.messenger.praktikum.yandex.git`
 
-2. Установка зависимостей:
-   `npm install`
+Установка зависимостей:
+`npm install`
 
-3. Запуск проекта для разработки:
-   `npm run dev`
+Запуск проекта для разработки:
+`npm run dev`
 
-4. Соберите стабильную версию проекта:
-   `npm run build`
+Соберите стабильную версию проекта:
+`npm run build`
+
+Запустите проект на localhost:
+`npm run start`
+
+Запустите для локальной разработки:
+`npm run dev`
+
+Запустите ESLint:
+`npm run lint`
+
+Запустите Stylelint:
+`npm run lint:style`
 
 ### Ссылки
 
