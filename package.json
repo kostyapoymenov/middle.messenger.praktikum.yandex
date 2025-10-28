@@ -3,14 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "scripts": {
     "dev": "vite",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
-    "start": "node server.cjs",
+    "start": "npm run prebuild && node server.cjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
