@@ -1,0 +1,15 @@
+@use "@/styles/variables";
+
+.nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: variables.$grayFaint;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+}

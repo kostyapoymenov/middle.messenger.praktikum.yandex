@@ -1,0 +1,46 @@
+@use "@/styles/variables";
+
+.forms-page {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+
+  .forms-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    padding: 50px 30px 30px;
+
+    background: variables.$white;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+
+    .avatar {
+      margin-bottom: 40px;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .forms-title {
+    text-align: center;
+    color: variables.$darkGray;
+    font-weight: 500;
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .forms-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}
