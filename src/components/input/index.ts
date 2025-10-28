@@ -1,20 +1,20 @@
-import Block from "../../core/block";
-import template from "./template.hbs?raw";
-import "./styles.scss";
-import type { IInputProps } from "./types";
+import Block from '../../core/block';
+import template from './template.hbs?raw';
+import './styles.scss';
+import type { IInputProps } from './types';
 
 class Input extends Block {
   validationFn;
   error?: string;
 
   constructor(props: Partial<IInputProps> = {}) {
-    super("input", {
+    super('input', {
       ...props,
-      events: { blur: () => this.validate(props.onValidate), submit: () => alert("submit") },
-      className: "input",
+      events: { blur: () => this.validate(props.onValidate), submit: () => alert('submit') },
+      className: 'input',
       attrs: {
         name: props.name,
-        type: props.type ?? "text",
+        type: props.type ?? 'text',
         placeholder: props.placeholder,
       },
     });
