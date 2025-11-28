@@ -1,0 +1,30 @@
+@use "@/styles/variables";
+
+.link {
+  align-items: center;
+  color: variables.$blue;
+  display: flex;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover,
+  &:focus {
+    color: variables.$dark-blue;
+    outline: none;
+  }
+
+  &--red {
+    color: variables.$red;
+
+    &:hover,
+    &:focus {
+      color: variables.$dark-red;
+      outline: none;
+    }
+  }
+
+  &--center {
+    justify-content: center;
+  }
+}

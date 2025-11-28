@@ -1,0 +1,60 @@
+@use "@/styles/variables";
+
+.chat-item {
+  align-items: center;
+  border-bottom: 1px solid variables.$gray-light;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  max-height: 71px;
+  overflow: hidden;
+  padding: 12px 0;
+  transition: color 0.3s ease;
+
+  &__body {
+    align-items: center;
+    display: flex;
+  }
+
+  &__name {
+    color: variables.$black;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &__message {
+    color: variables.$gray;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__date {
+    color: variables.$gray;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  &__count {
+    color: variables.$white;
+    display: flex;
+    font-size: 11px;
+    font-weight: 500;
+    justify-content: center;
+
+    &-circle {
+      align-items: center;
+      background-color: variables.$blue;
+      border-radius: 50%;
+      display: flex;
+      height: 18px;
+      justify-content: center;
+      width: 18px;
+    }
+  }
+}
