@@ -1,0 +1,11 @@
+.profile-row {
+  align-items: baseline;
+  display: flex;
+
+  .dots {
+    border-bottom: 1px dotted #c2cece;
+    display: block;
+    flex: 1;
+    margin: 0 8px;
+  }
+}

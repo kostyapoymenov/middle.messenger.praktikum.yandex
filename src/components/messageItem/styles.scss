@@ -1,0 +1,33 @@
+@use "@/styles/variables";
+
+.message-item {
+  border-radius: 8px;
+  max-width: 65%;
+  padding: 4px 12px;
+
+  .message-time {
+    color: variables.$black;
+    display: block;
+    font-size: 12px;
+    text-align: end;
+    width: 100%;
+  }
+
+  & p {
+    color: variables.$black;
+    margin: 0;
+  }
+
+  &.left {
+    align-self: flex-start;
+    background-color: variables.$gray-light;
+    border-top-left-radius: 0;
+  }
+
+  &.right {
+    align-self: flex-end;
+    background-color: variables.$light-blue;
+    border-top-right-radius: 0;
+    margin-left: auto;
+  }
+}

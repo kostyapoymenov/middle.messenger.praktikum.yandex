@@ -1,7 +1,6 @@
-import "./styles/base.scss";
-import App from "./App.js";
+import App from './App';
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   const app = new App();
   app.render();
 });
