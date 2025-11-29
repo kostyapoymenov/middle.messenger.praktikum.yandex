@@ -40,7 +40,7 @@ class Route {
 
   render() {
     if (!this.#block) {
-      this.#block = new this.#blockClass(this.#componentProps);
+      this.#block = new this.#blockClass('div', this.#componentProps);
     }
     const root = document.querySelector(this.#props.rootQuery);
     if (root && this.#block.getContent()) {
