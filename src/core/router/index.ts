@@ -7,12 +7,19 @@ class Route {
   #blockClass: typeof Block;
   #block: Block | null;
   #props: RouteProps;
+  #componentProps?: Record<string, unknown>;
 
-  constructor(pathname: string, view: typeof Block, props: RouteProps) {
+  constructor(
+    pathname: string,
+    view: typeof Block,
+    props: RouteProps,
+    componentProps?: Record<string, unknown>
+  ) {
     this.#pathname = pathname;
     this.#blockClass = view;
     this.#block = null;
     this.#props = props;
+    this.#componentProps = componentProps;
   }
 
   navigate(pathname: string) {
@@ -33,7 +40,7 @@ class Route {
 
   render() {
     if (!this.#block) {
-      this.#block = new this.#blockClass();
+      this.#block = new this.#blockClass(this.#componentProps);
     }
     const root = document.querySelector(this.#props.rootQuery);
     if (root && this.#block.getContent()) {
@@ -59,8 +66,17 @@ class Router {
     Router.#instance = this;
   }
 
-  use(pathname: string, block: typeof Block) {
-    const route = new Route(pathname, block, { rootQuery: this.#rootQuery });
+  use(
+    pathname: string,
+    block: typeof Block,
+    componentProps?: Record<string, unknown>
+  ) {
+    const route = new Route(
+      pathname,
+      block,
+      { rootQuery: this.#rootQuery },
+      componentProps
+    );
     this.#routes.push(route);
     return this;
   }

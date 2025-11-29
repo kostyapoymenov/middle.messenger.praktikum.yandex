@@ -10,8 +10,8 @@ import { fetchMe } from './services/auth';
 window.router = new Router('#app');
 window.store = createStore(STORE_DEFAULT_STATE);
 
-Object.values(ROUTES_MAPPING).forEach(({ pathname, component }) =>
-  window.router.use(pathname, component as typeof Block)
+Object.values(ROUTES_MAPPING).forEach(({ pathname, component, props }) =>
+  window.router.use(pathname, component as typeof Block, props)
 );
 
 const init = async () => {

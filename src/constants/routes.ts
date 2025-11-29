@@ -10,15 +10,16 @@ import RegistrationPage from '../pages/registrationPage';
 export interface IRoute {
   name: string;
   component: Block;
+  props?: Record<string, unknown>;
 }
 
 export const ROUTES = {
   notFound: '/404',
   serverDown: '/500',
-  registration: '/registration',
+  registration: '/sign-up',
   logIn: '/',
   chats: '/messenger',
-  profile: '/profile',
+  profile: '/settings',
   editProfile: '/edit-profile',
   editPassword: '/edit-password',
 };
@@ -30,10 +31,18 @@ export const ROUTES_MAPPING = [
   {
     pathname: ROUTES.serverDown,
     component: ErrorPage,
+    props: {
+      code: '500',
+      text: 'Что-то пошло не так! Уже фиксим',
+    },
   },
   {
     pathname: ROUTES.notFound,
     component: ErrorPage,
+    props: {
+      code: '404',
+      text: 'Страница не найдена',
+    },
   },
   { pathname: ROUTES.logIn, component: LoginPage },
   { pathname: ROUTES.profile, component: ProfilePage },
