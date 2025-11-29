@@ -7,7 +7,7 @@ class Link extends Block {
   constructor(props: Partial<ILinkProps> = {}) {
     super('a', {
       ...props,
-      className: 'my-link',
+      className: 'link',
       attrs: { href: props.href ?? '' },
     });
   }

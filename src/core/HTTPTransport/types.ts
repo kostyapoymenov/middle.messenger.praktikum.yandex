@@ -10,7 +10,7 @@ export type HttpMethod = (typeof HttpMethods)[keyof typeof HttpMethods];
 
 export type TQueryParams = Record<string, string | number | boolean>;
 
-export interface IRequestOptions<Q = TQueryParams, D = XMLHttpRequestBodyInit> {
+export interface IRequestOptions<Q = TQueryParams, D = unknown> {
   method: HttpMethod;
   timeout: number;
   headers: Record<string, string>;

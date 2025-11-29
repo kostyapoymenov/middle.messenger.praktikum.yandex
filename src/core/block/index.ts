@@ -1,9 +1,14 @@
+import EventBus from '../eventBus/index.ts';
 import { v4 as makeUUID } from 'uuid';
 import Handlebars from 'handlebars';
-import EventBus from '../eventBus/index.ts';
-import { type TBlockChildren, type IBlockMeta, type IBlockProps, BlockEvents } from './types.ts';
+import {
+  type TBlockChildren,
+  type IBlockMeta,
+  type IBlockProps,
+  BlockEvents,
+} from './types.ts';
 
-abstract class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
+class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
   protected meta: IBlockMeta;
   protected element: HTMLElement | null = null;
   protected eventBus: EventBus;
@@ -11,7 +16,7 @@ abstract class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
 
   children: TBlockChildren<Block> = {};
 
-  constructor(tagName = 'div', propsAndChildren: T) {
+  constructor(tagName = 'div', propsAndChildren: T = {} as T) {
     this.eventBus = new EventBus();
     this.id = makeUUID();
     const { props, children } = this.#getChildren(propsAndChildren);
@@ -150,7 +155,10 @@ abstract class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
     return this.element!;
   }
 
-  protected compile(template: string, props: Record<string, unknown> = {}): DocumentFragment {
+  protected compile(
+    template: string,
+    props: Record<string, unknown> = {}
+  ): DocumentFragment {
     const propsAndStubs = { ...props };
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
@@ -161,12 +169,16 @@ abstract class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
         propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
       }
     });
-    const fragment = this.#createDocumentElement('template') as HTMLTemplateElement;
+    const fragment = this.#createDocumentElement(
+      'template'
+    ) as HTMLTemplateElement;
     fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
     Object.values(this.children).forEach((child) => {
       if (Array.isArray(child)) {
         child.forEach((component) => {
-          const stub = fragment.content.querySelector(`[data-id="${component.id}"]`);
+          const stub = fragment.content.querySelector(
+            `[data-id="${component.id}"]`
+          );
           stub?.replaceWith(component.getContent());
         });
       } else {

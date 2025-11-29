@@ -1,25 +1,58 @@
 import Block from '../../core/block';
 import template from './template.hbs?raw';
-import chatItemsMock from '../../mock/chatItems';
 import ChatItem from '../../components/chatItem';
-import messageItemsMock from '../../mock/messageItems';
 import MessageItem from '../../components/messageItem';
 import Button from '../../components/button';
 import { NOOP_CALLBACK } from '../../constants/noop';
 import Form from '../../components/form';
 import { validateMessage } from '../../utils/validators';
+import { ROUTES } from '../../constants/routes';
+import { createChat, fetchChats } from '../../services/chats';
+import withStore from '../../core/store/utils';
+import type { IAppState } from '../../core/store/types';
+import type { IChat } from '../../models/chat';
+import { initWs } from '../../services/messages';
+import type { IMessage } from '../../models/message';
+import type { IUser } from '../../models/user';
+import chatInfo from '../../components/chatInfo';
+import { normalizeTime } from '../../utils/normalizeTime';
+import { userName } from '../../utils/userName';
 import './styles.scss';
 
 class ChatsPage extends Block {
+  sendMessage?: (message: string) => void;
+  disconnect?: () => void;
+
   constructor() {
-    const chatItems = chatItemsMock.map((item) => new ChatItem(item));
-    const messageItems = messageItemsMock.map((item) => new MessageItem(item));
-    const profileButton = new Button({ text: 'Профиль', icon: 'fa-user' });
-    const attachButton = new Button({ icon: 'paperclip', events: { click: NOOP_CALLBACK } });
+    const profileButton = new Button({
+      text: 'Профиль',
+      icon: 'fa-user',
+      events: { click: () => window.router.go(ROUTES.profile) },
+    });
+    const createNewChat = new Button({
+      text: 'Новый чат',
+      icon: 'fa-plus',
+      events: {
+        click: () => {
+          const title = prompt('Введите название чата');
+          if (title) {
+            createChat(title);
+          }
+        },
+      },
+    });
+    const attachButton = new Button({
+      icon: 'paperclip',
+      events: { click: NOOP_CALLBACK },
+    });
     const form = new Form({
       classNames: 'message-form',
       fields: [
-        { placeholder: 'Введите сообщение...', name: 'message', validationFn: validateMessage },
+        {
+          placeholder: 'Введите сообщение...',
+          name: 'message',
+          validationFn: validateMessage,
+        },
       ],
       submitButton: { text: undefined, icon: 'arrow-right' },
       events: {
@@ -29,9 +62,10 @@ class ChatsPage extends Block {
             (block.children.inputField as Block).getElement()?.blur();
           });
           if (event.currentTarget) {
-            console.log(
-              Object.fromEntries(new FormData(event.currentTarget as HTMLFormElement).entries())
-            );
+            const messageForm = event.currentTarget as HTMLFormElement;
+            const message = new FormData(messageForm).get('message') as string;
+            messageForm.reset();
+            this.sendMessage?.(message);
           }
         },
       },
@@ -39,17 +73,61 @@ class ChatsPage extends Block {
 
     super('div', {
       className: 'chats-page',
-      chatItems,
-      messageItems,
       profileButton,
       attachButton,
       form,
+      createNewChat,
     });
+    this.loadChats();
   }
 
-  render(): DocumentFragment {
-    return this.compile(template);
+  render() {
+    const chats: IChat[] = (this.meta.props.chats ?? []) as IChat[];
+    const messages: IMessage[] = (this.meta.props.messages ?? []) as IMessage[];
+    const selectedChatUsers: IUser[] = (this.meta.props.selectedChatUsers ??
+      []) as IUser[];
+    const user: IUser = this.meta.props.user as IUser;
+    this.children['chatItems'] = chats.map(
+      (chat) =>
+        new ChatItem({
+          chat,
+          onClick: () => {
+            this.disconnect?.();
+            initWs(chat.id).then(({ sendMessage, disconnect }) => {
+              this.sendMessage = sendMessage;
+              this.disconnect = disconnect;
+              this.children['chatInfo'] = new chatInfo();
+            });
+          },
+        })
+    );
+    this.children['messageItems'] = messages.map((item) => {
+      return new MessageItem({
+        ...item,
+        userName: userName(user, selectedChatUsers, item),
+        time: normalizeTime(item.time),
+      });
+    });
+    return this.compile(template, this.meta.props);
+  }
+
+  async loadChats() {
+    await fetchChats();
   }
 }
 
-export default ChatsPage;
+const mapStateToProps = ({
+  chats,
+  messages,
+  selectedChat,
+  selectedChatUsers,
+  user,
+}: Partial<IAppState>) => ({
+  chats,
+  messages,
+  selectedChat,
+  selectedChatUsers,
+  user,
+});
+
+export default withStore(ChatsPage, mapStateToProps);

@@ -1,4 +1,9 @@
-const avatarChangeHandlers = new WeakMap<HTMLInputElement, (event: Event) => void>();
+import { updateAvatar } from '../../services/user';
+
+const avatarChangeHandlers = new WeakMap<
+  HTMLInputElement,
+  (event: Event) => void
+>();
 
 export const handleAvatarClick = (event: Event): void => {
   const avatar = event.currentTarget as HTMLElement;
@@ -19,6 +24,7 @@ export const handleAvatarClick = (event: Event): void => {
     if (!file) {
       return;
     }
+    updateAvatar(file);
 
     const reader = new FileReader();
     reader.onload = ({ target }): void => {

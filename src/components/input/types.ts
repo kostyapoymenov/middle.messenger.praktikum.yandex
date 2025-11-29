@@ -1,4 +1,5 @@
 export interface IInputProps {
+  value: string | number;
   name: string;
   type: 'text' | 'password' | 'email' | 'phone';
   placeholder: string;

@@ -1,21 +1,35 @@
-<aside class="sidebar">
+<aside class='sidebar'>
 
-  <nav class="sidebar-nav">
+  <nav class='sidebar-nav'>
     {{{profileButton}}}
+    {{{createNewChat}}}
   </nav>
 
-  <section class="chat-list">
-    {{{chatItems}}}
+  <section class='chat-list'>
+    {{#if chats.length}}
+      {{{chatItems}}}
+    {{else}}
+      У вас пока нет чатов
+    {{/if}}
   </section>
 </aside>
 
-<main class="chat-area">
-  <section class="chat-messages">
-    {{{messageItems}}}
-  </section>
+{{#if chats.length}}
+  {{#if selectedChat}}
+    <div class='selected-chat'>
+      <main class='chat-area'>
+        <section class='chat-messages'>
+          {{{messageItems}}}
+        </section>
 
-  <div class="input-container">
-    {{{attachButton}}}
-    {{{form}}}
-  </div>
-</main>
+        <div class='input-container'>
+          {{{attachButton}}}
+          {{{form}}}
+        </div>
+      </main>
+      {{{chatInfo}}}
+    </div>
+  {{else}}
+    Для продолжения общения выберите чат
+  {{/if}}
+{{/if}}
