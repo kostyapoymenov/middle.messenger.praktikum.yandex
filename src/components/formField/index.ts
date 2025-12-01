@@ -7,6 +7,7 @@ import type { IFormFieldProps } from './types';
 class FormField extends Block {
   constructor(props: Partial<IFormFieldProps>) {
     const inputField = new Input({
+      value: props.value,
       name: props.name,
       type: props.type,
       placeholder: props.placeholder,

@@ -1,0 +1,13 @@
+{{#if isOpen}}
+<div class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>{{title}}</h3>
+      <button class="modal-close" type="button" onclick="{{onClose}}">×</button>
+    </div>
+    <div class="modal-body">
+      {{> @partial-block }}
+    </div>
+  </div>
+</div>
+{{/if}}
