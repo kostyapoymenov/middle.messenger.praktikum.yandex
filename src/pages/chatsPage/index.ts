@@ -17,6 +17,7 @@ import type { IUser } from '../../models/user';
 import chatInfo from '../../components/chatInfo';
 import { normalizeTime } from '../../utils/normalizeTime';
 import { userName } from '../../utils/userName';
+import InputModal from '../../components/inputModal';
 import './styles.scss';
 
 class ChatsPage extends Block {
@@ -29,22 +30,50 @@ class ChatsPage extends Block {
       icon: 'fa-user',
       events: { click: () => window.router.go(ROUTES.profile) },
     });
+
+    const createChatModal = new InputModal({
+      isOpen: false,
+      title: 'Создать новый чат',
+      placeholder: 'Введите название чата',
+      submitText: 'Создать',
+      cancelText: 'Отмена',
+      onClose: () => {
+        createChatModal.setProps({ isOpen: false });
+      },
+      onSubmit: (title: string) => {
+        if (title.trim()) {
+          createChat(title.trim());
+        }
+      },
+      validationFn: (value: string) => {
+        if (!value.trim()) {
+          return 'Название чата обязательно';
+        }
+        if (value.trim().length < 3) {
+          return 'Название должно быть не менее 3 символов';
+        }
+        if (value.trim().length > 50) {
+          return 'Название должно быть не более 50 символов';
+        }
+        return '';
+      },
+    });
+
     const createNewChat = new Button({
       text: 'Новый чат',
       icon: 'fa-plus',
       events: {
         click: () => {
-          const title = prompt('Введите название чата');
-          if (title) {
-            createChat(title);
-          }
+          createChatModal.setProps({ isOpen: true });
         },
       },
     });
+
     const attachButton = new Button({
       icon: 'paperclip',
       events: { click: NOOP_CALLBACK },
     });
+
     const form = new Form({
       classNames: 'message-form',
       fields: [
@@ -78,6 +107,9 @@ class ChatsPage extends Block {
       form,
       createNewChat,
     });
+
+    this.children['createChatModal'] = createChatModal;
+
     this.loadChats();
   }
 
