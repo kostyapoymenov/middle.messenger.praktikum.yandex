@@ -10,10 +10,14 @@ class Input extends Block {
   constructor(props: Partial<IInputProps> = {}) {
     super('input', {
       ...props,
-      events: { blur: () => this.validate(props.onValidate), submit: () => alert('submit') },
+      events: {
+        blur: () => this.validate(props.onValidate),
+        submit: () => alert('submit'),
+      },
       className: 'input',
       attrs: {
         name: props.name,
+        value: props.value,
         type: props.type ?? 'text',
         placeholder: props.placeholder,
       },

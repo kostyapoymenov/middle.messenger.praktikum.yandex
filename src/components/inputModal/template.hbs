@@ -1,0 +1,18 @@
+{{#if isOpen}}
+  <div class='modal-overlay {{modalClass}}' data-testid='modal-overlay'>
+    <div class='modal-content' data-testid='modal-content'>
+      <div class='modal-header'>
+        <h3>{{title}}</h3>
+      </div>
+      <div class='modal-body'>
+        <div class='input-container'>
+          {{{input}}}
+        </div>
+        <div class='modal-actions'>
+          {{{cancelButton}}}
+          {{{submitButton}}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}

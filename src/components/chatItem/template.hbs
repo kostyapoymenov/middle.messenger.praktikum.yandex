@@ -1,15 +1,18 @@
 <div class="chat-item__body">
   {{{avatar}}}
   <div class="chat-item__content">
-    <div class="chat-item__name">{{chatName}}</div>
-    <div class="chat-item__message">{{chatMessage}}</div>
+    <div class="chat-item__name">{{chat.title}}</div>
+    <div class="chat-item__message">{{lastMsgTime}}</div>
   </div>
 </div>
 <div class="chat-item__info">
   <div class="chat-item__date">
     <span>{{chatTime}}</span>
   </div>
+  <p class="chat-item__last-message">{{chat.last_message.content}}</p>
   <div class="chat-item__count">
-    <span class="chat-item__count-circle">{{unreadCount}}</span>
+    {{#if chat.unread_count}}
+      <span class="chat-item__count-circle">{{chat.unread_count}}</span>
+    {{/if}}
   </div>
 </div>

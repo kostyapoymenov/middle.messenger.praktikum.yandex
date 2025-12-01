@@ -1,13 +1,13 @@
 import Block from '../../core/block';
 import template from './template.hbs?raw';
 import './styles.scss';
-import type { IChatMessageProps } from './types';
+import type { IMessage } from '../../models/message';
 
 class MessageItem extends Block {
-  constructor(props: Partial<IChatMessageProps>) {
+  constructor(props: Partial<IMessage>) {
     super('div', {
       ...props,
-      className: `message-item ${props.isIncoming ? 'left' : 'right'}`,
+      className: `message-item ${props.userName !== 'Вы' ? 'left' : 'right'}`,
     });
   }
 

@@ -1,4 +1,4 @@
-@use "@/styles/variables";
+@use '@/styles/variables';
 
 .message-form {
   align-items: flex-start;
@@ -25,7 +25,6 @@
   flex: 1;
   gap: 24px;
   grid-template-columns: 360px 1fr;
-  padding: 20px;
 
   .sidebar {
     border-right: 2px solid variables.$gray-light;
@@ -62,34 +61,40 @@
     }
   }
 
-  .chat-area {
+  .selected-chat {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+    gap: 24px;
 
-  .input-container {
-    align-items: flex-start;
-    display: flex;
-    gap: 12px;
-
-    .input {
-      flex: 1;
+    .chat-area {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 12px;
     }
 
-    .btn {
-      border-radius: 50%;
-      height: 40px;
-      width: 40px;
-    }
+    .input-container {
+      align-items: flex-start;
+      display: flex;
+      gap: 12px;
 
-    & > .btn {
-      background-color: transparent;
-      padding: 0;
+      .input {
+        flex: 1;
+      }
 
-      &:hover {
-        background-color: variables.$gray-light;
-        transition: all 0.3s ease;
+      .btn {
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+      }
+
+      & > .btn {
+        background-color: transparent;
+        padding: 0;
+
+        &:hover {
+          background-color: variables.$gray-light;
+          transition: all 0.3s ease;
+        }
       }
     }
   }

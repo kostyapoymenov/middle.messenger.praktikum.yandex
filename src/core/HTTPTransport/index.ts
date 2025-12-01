@@ -8,6 +8,12 @@ import {
 import { queryStringify } from './utils';
 
 class HTTPTransport {
+  #apiUrl: string;
+
+  constructor(apiUrl: string) {
+    this.#apiUrl = apiUrl;
+  }
+
   get = this.#createMethod(HttpMethods.Get);
   post = this.#createMethod(HttpMethods.Post);
   put = this.#createMethod(HttpMethods.Put);
@@ -16,7 +22,10 @@ class HTTPTransport {
 
   #createMethod(method: HttpMethod): THttpRequest {
     return (url, options = {}) =>
-      this.#request(url, { ...(options as IRequestOptions<TQueryParams>), method });
+      this.#request(`${this.#apiUrl}/${url}`, {
+        ...(options as IRequestOptions<TQueryParams>),
+        method,
+      });
   }
 
   #request<R>(url: string, options: IRequestOptions<TQueryParams>): Promise<R> {
@@ -29,6 +38,7 @@ class HTTPTransport {
       }
 
       xhr.open(method, url);
+      xhr.withCredentials = true;
 
       if (headers) {
         Object.entries(headers).forEach(([key, value]) => {
@@ -37,20 +47,32 @@ class HTTPTransport {
       }
 
       xhr.timeout = timeout;
-      xhr.ontimeout = (): void => reject(new Error(`Request timed out after ${timeout}ms`));
-      xhr.onload = (): void => {
-        const response = JSON.parse(xhr.responseText);
-        resolve(response);
+      xhr.ontimeout = (): void =>
+        reject(new Error(`Request timed out after ${timeout}ms`));
+      xhr.onload = () => {
+        if (xhr.status !== 200) {
+          reject(xhr.response);
+          return;
+        }
+
+        try {
+          resolve(JSON.parse(xhr.response));
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (error) {
+          resolve(xhr.response);
+        }
       };
       xhr.onerror = (): void => reject(new Error('Network error'));
 
       if (method !== HttpMethods.Get && data) {
-        let body = data;
-        if (typeof data === 'object' && !headers['Content-Type']) {
+        if (data instanceof FormData) {
+          xhr.send(data);
+        } else if (typeof data === 'object' && !headers?.['Content-Type']) {
           xhr.setRequestHeader('Content-Type', 'application/json');
-          body = JSON.stringify(data);
+          xhr.send(JSON.stringify(data));
+        } else {
+          xhr.send(data as XMLHttpRequestBodyInit);
         }
-        xhr.send(body);
       } else {
         xhr.send();
       }
