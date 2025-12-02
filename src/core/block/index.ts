@@ -40,6 +40,10 @@ class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
     this.eventBus.emit(BlockEvents.flowRender);
   }
 
+  init(): void {
+    this.#init();
+  }
+
   #createResources(): void {
     const { tagName, props } = this.meta;
     const element = document.createElement(tagName);

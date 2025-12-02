@@ -51,3 +51,22 @@ export const deleteUserFromChat = async (
     });
   }
 };
+
+export const deleteChat = async (chatId: IChat['id']) => {
+  const { setState } = window.store;
+  const [isDeleted] = await withTryCatch<IChat>(CHATS_API.deleteChat(chatId));
+  if (isDeleted) {
+    await fetchChats();
+    setState({ selectedChat: undefined, selectedChatUsers: [] });
+  }
+};
+
+export const updateAvatar = async (file: File, chatId: IChat['id']) => {
+  const data = new FormData();
+  data.append('avatar', file);
+  data.append('chatId', chatId as unknown as string);
+  const [chat] = await withTryCatch<IChat>(CHATS_API.updateAvatar(data));
+  if (chat) {
+    await fetchChats();
+  }
+};
