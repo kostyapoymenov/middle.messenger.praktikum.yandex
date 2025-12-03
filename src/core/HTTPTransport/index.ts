@@ -4,8 +4,8 @@ import {
   type TQueryParams,
   type HttpMethod,
   HttpMethods,
-} from './types';
-import { queryStringify } from './utils';
+} from './types.ts';
+import { queryStringify } from './utils.ts';
 
 class HTTPTransport {
   #apiUrl: string;

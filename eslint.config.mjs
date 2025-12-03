@@ -29,4 +29,17 @@ export default [
       'object-curly-spacing': ['error', 'always'],
     },
   },
+  {
+    files: ['**/*.test.ts', '**/*.spec.ts', 'tests/**/*.ts'],
+    languageOptions: {
+      globals: {
+        ...globals.mocha,
+        ...globals.sinon,
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-unused-expressions': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+    },
+  },
 ];

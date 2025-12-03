@@ -1,14 +1,28 @@
 import { expect } from 'chai';
 import Block from './index.ts';
-import type { IBlockProps } from './types.ts';
+import type { IBlockMeta, IBlockProps } from './types.ts';
 
 describe('Block', () => {
-  let TestBlock: typeof Block;
+  interface TestBlockInstance extends Block<Partial<IBlockProps>> {
+    getProps(): IBlockProps;
+    getMeta(): IBlockMeta;
+    getId(): string;
+  }
+
+  let TestBlock: new (props?: Partial<IBlockProps>) => TestBlockInstance;
 
   beforeEach(() => {
-    TestBlock = class extends Block {
-      constructor(props: IBlockProps = {}) {
+    TestBlock = class TestBlockClass extends Block<Partial<IBlockProps>> {
+      constructor(props: Partial<IBlockProps> = {}) {
         super('div', props);
+      }
+
+      public getProps(): IBlockProps {
+        return this.meta.props;
+      }
+
+      public getMeta() {
+        return this.meta;
       }
 
       render() {
@@ -46,9 +60,9 @@ describe('Block', () => {
     it('should assign unique id', () => {
       const block1 = new TestBlock();
       const block2 = new TestBlock();
-      expect(block1.id).to.exist;
-      expect(block2.id).to.exist;
-      expect(block1.id).to.not.equal(block2.id);
+      expect(block1.getId()).to.exist;
+      expect(block2.getId()).to.exist;
+      expect(block1.getId()).to.not.equal(block2.getId());
     });
   });
 
@@ -61,8 +75,8 @@ describe('Block', () => {
         child: childBlock,
       });
 
-      expect(block.meta.props.className).to.equal('test-class');
-      expect(block.meta.props.text).to.equal('Hello');
+      expect(block.getProps().className).to.equal('test-class');
+      expect(block.getProps().text).to.equal('Hello');
       expect(block.children.child).to.equal(childBlock);
     });
 
@@ -109,14 +123,14 @@ describe('Block', () => {
     it('should update props correctly', () => {
       const block = new TestBlock({ prop1: 'value1', prop2: 'value2' });
 
-      expect(block.meta.props.prop1).to.equal('value1');
-      expect(block.meta.props.prop2).to.equal('value2');
+      expect(block.getProps().prop1).to.equal('value1');
+      expect(block.getProps().prop2).to.equal('value2');
 
       block.setProps({ prop1: 'updated', prop3: 'new' });
 
-      expect(block.meta.props.prop1).to.equal('updated');
-      expect(block.meta.props.prop2).to.equal('value2');
-      expect(block.meta.props.prop3).to.equal('new');
+      expect(block.getProps().prop1).to.equal('updated');
+      expect(block.getProps().prop2).to.equal('value2');
+      expect(block.getProps().prop3).to.equal('new');
     });
 
     it('should handle empty props', () => {

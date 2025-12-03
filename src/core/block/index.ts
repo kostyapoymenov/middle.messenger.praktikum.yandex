@@ -29,6 +29,10 @@ class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
     this.eventBus.emit(BlockEvents.init);
   }
 
+  public getId(): string {
+    return this.id;
+  }
+
   #registerEvents(): void {
     this.eventBus.on(BlockEvents.init, this.#init.bind(this));
     this.eventBus.on(BlockEvents.flowCdm, this.#componentDidMount.bind(this));
