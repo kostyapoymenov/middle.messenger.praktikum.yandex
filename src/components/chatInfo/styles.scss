@@ -9,15 +9,8 @@
   width: 300px;
   border-left: 2px solid variables.$gray-light;
 
-  .title-container {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-
-    .controls {
-      align-items: center;
-      display: flex;
-      gap: 8px;
-    }
+  .chat-controls {
+    display: grid;
+    gap: 8px;
   }
 }

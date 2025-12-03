@@ -93,6 +93,9 @@ class ChatsPage extends Block {
           if (event.currentTarget) {
             const messageForm = event.currentTarget as HTMLFormElement;
             const message = new FormData(messageForm).get('message') as string;
+            if (!message) {
+              return;
+            }
             messageForm.reset();
             this.sendMessage?.(message);
           }

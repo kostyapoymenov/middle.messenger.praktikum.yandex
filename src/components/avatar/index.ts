@@ -5,7 +5,11 @@ import { handleAvatarClick } from './utils';
 import { RESOURSES_URL } from '../../env';
 
 class Avatar extends Block {
-  constructor(props: { avatar?: string; editable: boolean }) {
+  constructor(props: {
+    avatar?: string;
+    editable: boolean;
+    callBack: (file: File) => void;
+  }) {
     const classes = ['avatar'];
     if (props.editable) {
       classes.push('editable');
@@ -14,7 +18,7 @@ class Avatar extends Block {
       ...props,
       src: `${RESOURSES_URL}${props.avatar}`,
       className: classes.join(' '),
-      events: { click: (event) => handleAvatarClick(event) },
+      events: { click: (event) => handleAvatarClick(event, props.callBack) },
     });
   }
 

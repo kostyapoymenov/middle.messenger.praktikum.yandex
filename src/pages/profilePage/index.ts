@@ -5,6 +5,7 @@ import Link from '../../components/link';
 import Avatar from '../../components/avatar';
 import { ROUTES } from '../../constants/routes';
 import GoToChats from '../../components/goToChats';
+import { updateAvatar } from '../../services/user';
 import { logout } from '../../services/auth';
 import withStore from '../../core/store/utils';
 import type { IAppState } from '../../core/store/types';
@@ -59,6 +60,7 @@ class ProfilePage extends Block {
       this.children['avatar'] = new Avatar({
         editable: true,
         avatar: (user as IUser).avatar,
+        callBack: (file: File) => updateAvatar(file),
       });
     }
     return this.compile(template, this.meta.props);

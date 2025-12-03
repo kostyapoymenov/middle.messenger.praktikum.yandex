@@ -30,6 +30,9 @@
 Запустите Stylelint:
 `npm run lint:style`
 
+Запуск тестов:
+`npm run test`
+
 ### Ссылки
 
 Сслыка на netlify [https://messenger-kp.netlify.app/](https://deploy-preview-4--messenger-kp.netlify.app/messenger)
