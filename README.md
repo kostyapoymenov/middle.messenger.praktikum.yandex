@@ -35,4 +35,4 @@
 
 ### Ссылки
 
-Сслыка на netlify [https://messenger-kp.netlify.app/](https://deploy-preview-4--messenger-kp.netlify.app/messenger)
+Сслыка на netlify [https://messenger-kp.netlify.app/](https://messenger-kp.netlify.app)
