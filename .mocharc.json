@@ -2,7 +2,7 @@
   "extension": ["ts"],
   "spec": "src/**/*.test.ts",
   "loader": "ts-node/esm",
-  "require": ["./test-setup.ts"],
+  "require": "./test-setup.ts",
   "timeout": 10000,
   "node-option": ["experimental-specifier-resolution=node"]
 }

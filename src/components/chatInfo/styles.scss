@@ -1,13 +1,13 @@
 @use '@/styles/variables';
 
 .chat-aside {
+  border-left: 2px solid variables.$gray-light;
   display: flex;
-  flex-direction: column;
   flex: 0 0 310px;
+  flex-direction: column;
   gap: 20px;
   padding: 16px;
   width: 300px;
-  border-left: 2px solid variables.$gray-light;
 
   .chat-controls {
     display: grid;

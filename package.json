@@ -17,8 +17,8 @@
     "format:check": "prettier --check \"**/*.{js,ts,json,css,scss,md}\"",
     "prepare": "husky",
     "pre-commit": "lint-staged",
-    "test": "mocha --config .mocharc.json --loader ts-node/esm",
-    "test:watch": "mocha --config .mocharc.json --loader ts-node/esm --watch"
+    "test": "mocha --config .mocharc.json",
+    "test:watch": "mocha --config .mocharc.json --watch"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
