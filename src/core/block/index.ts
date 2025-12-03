@@ -8,6 +8,8 @@ import {
   BlockEvents,
 } from './types.ts';
 
+const test: string = 123;
+
 class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
   protected meta: IBlockMeta;
   protected element: HTMLElement | null = null;
