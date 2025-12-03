@@ -1,4 +1,4 @@
-@use "@/styles/variables";
+@use '@/styles/variables';
 
 .avatar {
   align-items: center;
@@ -17,7 +17,6 @@
   &.editable {
     margin-right: initial;
     position: relative;
-    width: 96px;
 
     .preview-image {
       height: 100%;

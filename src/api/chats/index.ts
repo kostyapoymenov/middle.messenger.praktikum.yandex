@@ -6,6 +6,8 @@ const httpClient = new HTTPTransport(API_MAPPING.chats);
 
 export const CHATS_API = {
   getChats: () => httpClient.get<IChat[]>(''),
+  deleteChat: (chatId: IChat['id']) =>
+    httpClient.delete('', { data: { chatId } }),
   getToken: (chatId: IChat['id']) =>
     httpClient.post<{ token: string }>(`/token/${chatId}`),
   getChatUsers: (chatId: IChat['id']) => httpClient.get(`/${chatId}/users`),
@@ -15,4 +17,6 @@ export const CHATS_API = {
     httpClient.put('users', { data }),
   deleteUsersFromChat: (data: IUserDeletionToChatData): Promise<unknown> =>
     httpClient.delete('users', { data }),
+  updateAvatar: (form: FormData): Promise<unknown> =>
+    httpClient.put('avatar', { data: form }),
 };

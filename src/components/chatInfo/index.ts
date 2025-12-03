@@ -4,7 +4,11 @@ import './styles.scss';
 import Button from '../../components/button';
 import withStore from '../../core/store/utils';
 import type { IAppState } from '../../core/store/types';
-import { addUserToChat, deleteUserFromChat } from '../../services/chats';
+import {
+  addUserToChat,
+  deleteUserFromChat,
+  deleteChat,
+} from '../../services/chats';
 import type { IUser } from '../../models/user';
 import ChatUser from '../chatUser';
 import type { IChat } from '../../models/chat';
@@ -48,9 +52,20 @@ class ChatInfo extends Block {
       },
     });
 
+    const deleteChatBtn = new Button({
+      icon: 'fa-trash',
+      text: 'Удалить чат',
+      events: {
+        click: () => {
+          deleteChat((this.meta.props.selectedChat as IChat).id);
+        },
+      },
+    });
+
     super('aside', {
       className: 'chat-aside',
       addUserBtn,
+      deleteChatBtn,
     });
 
     this.children['addUserModal'] = addUserModal;

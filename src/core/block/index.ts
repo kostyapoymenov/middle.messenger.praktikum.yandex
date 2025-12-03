@@ -29,6 +29,10 @@ class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
     this.eventBus.emit(BlockEvents.init);
   }
 
+  public getId(): string {
+    return this.id;
+  }
+
   #registerEvents(): void {
     this.eventBus.on(BlockEvents.init, this.#init.bind(this));
     this.eventBus.on(BlockEvents.flowCdm, this.#componentDidMount.bind(this));
@@ -38,6 +42,10 @@ class Block<T extends Partial<IBlockProps> = Partial<IBlockProps>> {
   #init(): void {
     this.#createResources();
     this.eventBus.emit(BlockEvents.flowRender);
+  }
+
+  init(): void {
+    this.#init();
   }
 
   #createResources(): void {
